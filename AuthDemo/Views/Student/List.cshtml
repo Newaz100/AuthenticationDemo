@@ -1,0 +1,41 @@
+﻿@model IEnumerable<AuthDemo.EF.Student>
+
+@{
+    ViewBag.Title = "Student List";
+}
+
+<h2>Student List</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>ID</th>
+            <th>Email</th>
+            <th>Semester</th>
+            <th>Year</th>
+            @if (Session["user"] != null && ((AuthDemo.EF.User)Session["user"]).Role == 2)
+            {
+                <th>Actions</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>@student.Name</td>
+                <td>@student.SId</td>
+                <td>@student.Email</td>
+                <td>@student.Semester</td>
+                <td>@student.Year</td>
+                @if (Session["user"] != null && ((AuthDemo.EF.User)Session["user"]).Role == 2)
+                {
+                    <td>
+                        <a href="/Student/Delete/@student.Id" class="btn btn-danger">Delete</a>
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

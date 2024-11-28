@@ -1,0 +1,38 @@
+﻿@model AuthDemo.DTOs.StudentDTO
+
+@{
+    ViewBag.Title = "Create Student";
+}
+
+<h2>Create Student</h2>
+
+@using (Html.BeginForm("Create", "Student", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.FName, "First Name")
+        @Html.TextBoxFor(m => m.FName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.FName, null, new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.LName, "Last Name")
+        @Html.TextBoxFor(m => m.LName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.LName, null, new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Email)
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Email, null, new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Semester)
+        @Html.DropDownListFor(m => m.Semester, new SelectList(new[] { 1, 2, 3 }), "Select Semester", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Semester, null, new { @class = "text-danger" })
+    </div>
+
+    <button type="submit" class="btn btn-success">Create</button>
+}

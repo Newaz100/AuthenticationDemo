@@ -1,0 +1,16 @@
+﻿@model AuthDemo.EF.Student
+
+@{
+    ViewBag.Title = "Delete Student";
+}
+
+<h2>Delete Student</h2>
+
+<p>Are you sure you want to delete the student <strong>@Model.Name</strong>?</p>
+
+@using (Html.BeginForm("Delete", "Student", FormMethod.Post))
+{
+    <input type="hidden" name="id" value="@Model.Id" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a href="/Student/List" class="btn btn-secondary">Cancel</a>
+}
